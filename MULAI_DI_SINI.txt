@@ -1,0 +1,58 @@
+ASSIGNMENT & DEADLINE MANAGEMENT APP — READY FOR EXISTING FLUTTER PROJECT
+Team: Asyifa, Moza, Sheika, Seyna
+
+INI ADALAH FILE PENGGANTI UNTUK PROJECT YANG SUDAH KAMU BUAT.
+JANGAN jalankan flutter create lagi. JANGAN menghapus project CineTrack.
+
+CARA MEMASANG DI MACBOOK (TERMINAL):
+1. Download ZIP ini dari ChatGPT. File biasanya masuk folder Downloads.
+2. Stop aplikasi Flutter lama jika masih berjalan: buka Terminal yang menjalankan flutter run, tekan q.
+3. Copy-paste satu baris ini ke Terminal:
+
+cd ~/development/assignment_deadline_manager && unzip -o ~/Downloads/Assignment_Manager_Ready_For_Existing_Project.zip && flutter pub get && flutter run -d chrome
+
+Jika ZIP tidak berada di Downloads, pindahkan ZIP ke Downloads dahulu.
+Jika Safari otomatis mengekstrak file, kamu bisa buka Settings Safari > General dan matikan 'Open safe files after downloading', lalu download ZIP sekali lagi.
+
+Folder lib/ dan test/ dari ZIP akan mengganti kode demo Flutter.
+Perintah unzip TIDAK menghapus folder android/ ios/ web/ yang sudah ada.
+Kamu mungkin ditanya apakah ingin replace file; parameter -o mengizinkan overwrite.
+
+FITUR:
+- Login demo dengan validasi, TextField, TextEditingController + dispose
+- Dashboard + daftar deadlines + Quick Actions
+- Add Assignment (form, date picker, pilihan priority)
+- Assignment Details (review sebelum save)
+- Calendar (pilih bulan/tanggal dan lihat deadlines)
+- Reminder (di dalam app, bukan notifikasi smartphone)
+- Assignments list dengan ListView.builder; buka detail
+- Open Assignment (description, subtasks checkboxes, mark completed)
+- Completion screen
+- Profile (tambahan)
+
+LIMITASI YANG HARUS JUJUR DIJELASKAN KE GURU:
+- Email/password hanya DEMO: tidak terhubung sistem akun atau sign-up sungguhan.
+- Task tersimpan di memory. Restart penuh bisa reset data.
+- Reminder hanya muncul di dalam aplikasi, bukan push notification.
+- Attachment pada wireframe belum berupa upload/download file sungguhan.
+
+FILE DI LIB:
+- main.dart: MaterialApp / theme / app entry
+- models/assignment.dart: data structure / priority
+- data/task_store.dart: dynamic list + notifyListeners()
+- widgets/task_tile.dart: kartu tugas reusable
+- screens/login_screen.dart
+- screens/dashboard_screen.dart (Home)
+- screens/add_assignment_screen.dart
+- screens/assignment_details_screen.dart
+- screens/calendar_screen.dart
+- screens/reminder_screen.dart
+- screens/assignment_list_screen.dart
+- screens/task_view_screen.dart
+- screens/completed_screen.dart
+- screens/profile_screen.dart
+
+CHECK:
+Run `flutter analyze` dan `flutter test` dalam folder project; jika ada error kirim output-nya.
+Untuk checkpoint screenshot asli dari perangkat kamu (Chrome bersama editor VS Code).
+Untuk GitHub, pastikan 4 orang melakukan kontribusi/commit sungguhan; kode ini bukan pengganti kerja tim.
