@@ -37,7 +37,7 @@ class _TaskViewScreenState extends State<TaskViewScreen> {
           child: Text(task.notes.isEmpty ? 'No description provided.' : task.notes))),
         const SizedBox(height: 18),
         Text('Platform / Source', style: Theme.of(context).textTheme.titleMedium),
-        Card(child: ListTile(title: Text(task.source), subtitle: const Text('Attachments are not connected in this demo.'))),
+        Card(child: ListTile(title: Text(task.source), subtitle: const Text('File attachments are not available in the offline app.'))),
         const SizedBox(height: 18),
         Text('Subtasks', style: Theme.of(context).textTheme.titleMedium),
         for (int i = 0; i < task.subtasks.length; i++)

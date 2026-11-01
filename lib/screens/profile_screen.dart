@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import '../data/task_store.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key, required this.userName});
+  const ProfileScreen({super.key, required this.userName, required this.store});
   final String userName;
+  final TaskStore store;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -12,10 +14,12 @@ class ProfileScreen extends StatelessWidget {
         const CircleAvatar(radius: 40, child: Icon(Icons.person, size: 38)),
         const SizedBox(height: 16),
         Text(userName, style: Theme.of(context).textTheme.headlineSmall),
-        const Text('Assignment & Deadline Manager • Local prototype'),
+        const Text('Your tasks are stored locally on this browser/device.'),
         const SizedBox(height: 20),
-        OutlinedButton(onPressed: () => Navigator.popUntil(context, (route) => route.isFirst),
-          child: const Text('Log Out')),
+        OutlinedButton(onPressed: () {
+          store.signOut();
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        }, child: const Text('LOG OUT')),
       ]))),
   );
 }

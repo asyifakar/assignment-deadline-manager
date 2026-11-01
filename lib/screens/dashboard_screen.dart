@@ -129,7 +129,7 @@ class DashboardScreen extends StatelessWidget {
                     const Card(
                       child: Padding(
                         padding: EdgeInsets.all(24),
-                        child: Center(child: Text('All assignments completed! 🎉')),
+                        child: Center(child: Text('No upcoming assignments. Tap Add Assignment to get started.')),
                       ),
                     )
                   else
@@ -205,7 +205,7 @@ class DashboardScreen extends StatelessWidget {
           } else if (index == 2) {
             _open(context, AssignmentListScreen(store: store, userName: userName));
           } else if (index == 3) {
-            _open(context, ProfileScreen(userName: userName));
+            _open(context, ProfileScreen(userName: userName, store: store));
           }
         },
         destinations: const <NavigationDestination>[

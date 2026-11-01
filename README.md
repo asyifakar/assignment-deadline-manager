@@ -1,17 +1,40 @@
-# assignment_deadline_manager
+# Assignment & Deadline Management App
 
-A new Flutter project.
+Flutter project based on the group's 8-screen Figma wireframe for the IT Final Project.
 
-## Getting Started
+## Functional scope
+- Offline local account **Sign Up** and **Log In** with form validation.
+- Each local account has a separate saved assignment list on the same browser/device.
+- Add an assignment, set subject, platform, due date, priority, and notes.
+- Review details before saving; view assignments in a dynamic ListView.
+- Calendar by date; upcoming deadlines and in-app reminders.
+- Check subtasks and mark assignments as completed.
+- Responsive purple-themed Dashboard, navigation, and profile/logout.
 
-This project is a starting point for a Flutter application.
+## Setup (existing Flutter project)
+```bash
+flutter pub get
+flutter run -d web-server --web-port 8080
+```
+Then open `http://localhost:8080` in your normal Chrome profile.
 
-A few resources to get you started if this is your first Flutter project:
+## Quality checks
+```bash
+flutter analyze
+flutter test
+```
+Tests cover form and navigation validation. Manual testing is still required for authentication, saving tasks, and browser restart persistence.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Storage and authentication limits
+Accounts and assignments are stored locally in shared_preferences / browser storage. Passwords are *salted and hashed* for this school project, but this is **not a production-secure account system**: there is no server-side verification, email verification, cloud sync, password reset, or cross-device login. Never enter a reused or sensitive password. Clearing browser site data can delete local records. Reminders are in-app lists, not device push notifications. File attachments are not supported.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Source code map
+- `lib/main.dart`: MaterialApp/theme and root.
+- `lib/data/local_auth_service.dart`: local registration/login and password hashing.
+- `lib/data/task_store.dart`: task persistence per local account.
+- `lib/models/assignment.dart`: Assignment model + Priority enum.
+- `lib/screens/`: Flutter pages, navigation, controllers and validation.
+- `lib/widgets/task_tile.dart`: reused deadline card.
+
+## Collaboration
+Asyifa, Moza, Sheika, Seyna. **Each member must contribute authentic edits and make their own GitHub commit before claiming completion of the group Git requirement.** See `TEAM_ROLES_AND_TEACHER_QA.md`.

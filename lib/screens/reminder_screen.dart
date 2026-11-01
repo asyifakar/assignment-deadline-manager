@@ -25,7 +25,7 @@ class ReminderScreen extends StatelessWidget {
         ...near.map((t) => TaskTile(task: t, onTap: () => Navigator.push(context,
           MaterialPageRoute<void>(builder: (_) => TaskViewScreen(store: store, task: t, userName: userName))))),
         const SizedBox(height: 20),
-        const Text('Note: reminders appear inside this demo app. Device push notifications are not implemented.',
+        const Text('Note: reminders appear inside this offline app. Device push notifications are not implemented.',
           textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
       ]);
     }),
