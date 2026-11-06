@@ -16,6 +16,10 @@ class ReminderScreen extends StatelessWidget {
     body: AnimatedBuilder(animation: store, builder: (context, child) {
       final today = DateTime.now();
       final start = DateTime(today.year, today.month, today.day);
+      final near = store.pending
+    .where((t) =>
+        t.dueDate.isBefore(start.add(const Duration(days: 4))))
+    .toList();
      if (near.isEmpty) {
   return const Center(
     child: Padding(
