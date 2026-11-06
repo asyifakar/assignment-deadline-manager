@@ -99,6 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     TextFormField(
                       controller: _email,
                       keyboardType: TextInputType.emailAddress,
+                      autofillHints: const [AutofillHints.email],
                       textInputAction: TextInputAction.next,
                       enabled: !_working,
                       decoration: const InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.mail_outline)),
@@ -108,6 +109,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     TextFormField(
                       controller: _password,
                       obscureText: !_showPassword,
+                      autofillHints: const [AutofillHints.newPassword],
                       textInputAction: TextInputAction.next,
                       enabled: !_working,
                       decoration: InputDecoration(
