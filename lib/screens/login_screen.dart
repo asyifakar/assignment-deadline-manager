@@ -116,6 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextField(
                     controller: _email,
                     keyboardType: TextInputType.emailAddress,
+                    autofillHints: const [AutofillHints.email],
                     textInputAction: TextInputAction.next,
                     enabled: !_working,
                     decoration: const InputDecoration(
@@ -125,6 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextField(
                     controller: _password,
                     obscureText: !_showPassword,
+                    autofillHints: const [AutofillHints.password],
                     enabled: !_working,
                     onSubmitted: (_) => _login(),
                     decoration: InputDecoration(
