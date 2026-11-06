@@ -36,7 +36,6 @@ class ReminderScreen extends StatelessWidget {
     ),
   );
 }
-      if (near.isEmpty) return const Center(child: Text('No urgent deadlines right now.'));
       return ListView(padding: const EdgeInsets.all(18), children: <Widget>[
         const Icon(Icons.notifications_active_outlined, size: 60, color: Colors.deepPurple),
         const SizedBox(height: 12),
