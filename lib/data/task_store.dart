@@ -26,15 +26,22 @@ class TaskStore extends ChangeNotifier {
   Future<void> loadForAccount(String email) async {
     await _writeQueue;
     final normalized = email.trim().toLowerCase();
-    final key = 'assignment_manager_user_tasks_v1_${base64UrlEncode(utf8.encode(normalized))}';
+    final key =
+        'assignment_manager_user_tasks_v1_${base64UrlEncode(utf8.encode(normalized))}';
     _activeKey = key;
     _tasks.clear();
     try {
       final raw = await _preferences.getString(key);
       if (raw != null) {
         final decoded = jsonDecode(raw);
-        if (decoded is! List) throw const FormatException('Invalid saved assignment data.');
-        _tasks.addAll(decoded.map((item) => _fromJson(Map<String, dynamic>.from(item as Map))));
+        if (decoded is! List) {
+          throw const FormatException('Invalid saved assignment data.');
+        }
+        _tasks.addAll(
+          decoded.map(
+            (item) => _fromJson(Map<String, dynamic>.from(item as Map)),
+          ),
+        );
       }
     } catch (error) {
       _activeKey = null;
@@ -74,7 +81,9 @@ class TaskStore extends ChangeNotifier {
       title: json['title']?.toString() ?? '',
       subject: json['subject']?.toString() ?? '',
       source: json['source']?.toString() ?? '',
-      dueDate: DateTime.tryParse(json['dueDate']?.toString() ?? '') ?? DateTime.now(),
+      dueDate:
+          DateTime.tryParse(json['dueDate']?.toString() ?? '') ??
+          DateTime.now(),
       priority: TaskPriority.values.firstWhere(
         (priority) => priority.name == json['priority'],
         orElse: () => TaskPriority.medium,
@@ -85,7 +94,11 @@ class TaskStore extends ChangeNotifier {
     );
     final flags = json['checkedSubtasks'];
     if (flags is List) {
-      for (var i = 0; i < flags.length && i < task.checkedSubtasks.length; i++) {
+      for (
+        var i = 0;
+        i < flags.length && i < task.checkedSubtasks.length;
+        i++
+      ) {
         task.checkedSubtasks[i] = flags[i] == true;
       }
     }
@@ -94,11 +107,14 @@ class TaskStore extends ChangeNotifier {
 
   void _persistChanges() {
     final key = _activeKey;
-    if (key == null) throw StateError('Please log in before editing assignments.');
+    if (key == null) {
+      throw StateError('Please log in before editing assignments.');
+    }
     // Capture an immutable snapshot now, rather than when the queued write starts.
     final snapshot = jsonEncode(_tasks.map(_toJson).toList());
     notifyListeners();
-    _writeQueue = _writeQueue.then((_) => _preferences.setString(key, snapshot))
+    _writeQueue = _writeQueue
+        .then((_) => _preferences.setString(key, snapshot))
         .catchError((Object error) {
           debugPrint('Unable to save assignments: $error');
         });
@@ -108,6 +124,27 @@ class TaskStore extends ChangeNotifier {
 
   void addAssignment(Assignment task) {
     _tasks.add(task);
+    _persistChanges();
+  }
+
+  void updateAssignment(
+    Assignment task, {
+    required String title,
+    required String notes,
+  }) {
+    final index = _tasks.indexWhere((item) => item.id == task.id);
+    if (index == -1 || title.trim().isEmpty) return;
+
+    _tasks[index].title = title.trim();
+    _tasks[index].notes = notes.trim();
+    _persistChanges();
+  }
+
+  void deleteAssignment(Assignment task) {
+    final index = _tasks.indexWhere((item) => item.id == task.id);
+    if (index == -1) return;
+
+    _tasks.removeAt(index);
     _persistChanges();
   }
 

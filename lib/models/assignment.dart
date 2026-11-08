@@ -3,9 +3,12 @@ enum TaskPriority { low, medium, high }
 extension TaskPriorityLabel on TaskPriority {
   String get label {
     switch (this) {
-      case TaskPriority.low: return 'Low';
-      case TaskPriority.medium: return 'Medium';
-      case TaskPriority.high: return 'High';
+      case TaskPriority.low:
+        return 'Low';
+      case TaskPriority.medium:
+        return 'Medium';
+      case TaskPriority.high:
+        return 'High';
     }
   }
 }
@@ -21,16 +24,27 @@ class Assignment {
     required this.notes,
     this.isCompleted = false,
     List<String>? subtasks,
-  }) : subtasks = subtasks ?? <String>['Start assignment', 'Review work', 'Submit assignment'],
-       checkedSubtasks = List<bool>.filled((subtasks ?? <String>['Start assignment', 'Review work', 'Submit assignment']).length, false);
+  }) : subtasks =
+           subtasks ??
+           <String>['Start assignment', 'Review work', 'Submit assignment'],
+       checkedSubtasks = List<bool>.filled(
+         (subtasks ??
+                 <String>[
+                   'Start assignment',
+                   'Review work',
+                   'Submit assignment',
+                 ])
+             .length,
+         false,
+       );
 
   final String id;
-  final String title;
+  String title;
   final String subject;
   final String source;
   final DateTime dueDate;
   final TaskPriority priority;
-  final String notes;
+  String notes;
   bool isCompleted;
   final List<String> subtasks;
   final List<bool> checkedSubtasks;
