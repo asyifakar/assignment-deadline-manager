@@ -36,8 +36,8 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                 padding: const EdgeINsets.all(24),
                 child: Text(
                   _showCompleted
-                ? 'Noassignments yet. Tap add Assignment to get started.'
-                : 'No active asignments. Turn on Show completed assignments to view finished tasks.',
+'No assignments yet. Tap Add Assignment to get started.'
+                  : 'No active asignments. Turn on Show completed assignments to view finished tasks.',
                 textAlign: TextAlign.center,
                 ),
               ),
