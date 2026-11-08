@@ -14,9 +14,9 @@ Flutter project based on the group's 8-screen Figma wireframe for the IT Final P
 ## Setup (existing Flutter project)
 ```bash
 flutter pub get
-flutter run -d web-server --web-port 8080
+flutter run -d web-server --web-port 8081
 ```
-Then open `http://localhost:8080` in your normal Chrome profile.
+Then open `http://localhost:8081` in your normal Chrome profile.
 
 ## Quality checks
 ```bash
