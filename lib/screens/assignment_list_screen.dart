@@ -30,7 +30,19 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
         Expanded(child: AnimatedBuilder(animation: widget.store, builder: (context, child) {
           final tasks = widget.store.tasks.where((t) => _showCompleted || !t.isCompleted).toList();
           tasks.sort((a, b) => a.dueDate.compareTo(b.dueDate));
-          if (tasks.isEmpty) return const Center(child: Text('No assignments to show.'));
+          if (tasks.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: const EdgeINsets.all(24),
+                child: Text(
+                  _showCompleted
+                ? 'Noassignments yet. Tap add Assignment to get started.'
+                : 'No active asignments. Turn on Show completed assignments to view finished tasks.',
+                textAlign: TextAlign.center,
+                ),
+              ),
+              );
+          }
           return ListView.builder(padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: tasks.length,
             itemBuilder: (context, index) {
